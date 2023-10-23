@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.12.0)
 
 #set PROJECT_NAME and version
 project(karl-app)
-set(VERSION_MAJOR 1 VERSION_MINOR 1 VERSION_PATCH 0)
-
+set(VERSION_MAJOR 1)
+set(VERSION_MINOR 1)
+set(VERSION_PATCH 0)
 
 #set Qt
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
