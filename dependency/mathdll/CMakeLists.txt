@@ -1,6 +1,4 @@
 cmake_minimum_required(VERSION 3.22.0)
-
-include(GNUInstallDirs)
 if (POLICY CMP0065)
   # do not export symbols from executables
   # affects compiler checks in project(), so must be set before it
@@ -12,10 +10,8 @@ project(mathkarl
     DESCRIPTION "Cross-platform mathkarl."
     HOMEPAGE_URL "toorich.top"
 )
-message(STATUS "${PROJECT_NAME} CMAKE_INSTALL_LIBDIR: ${CMAKE_INSTALL_LIBDIR}")
-message(STATUS "${PROJECT_NAME} CMAKE_INSTALL_BINDIR: ${CMAKE_INSTALL_BINDIR}")
-message(STATUS "${PROJECT_NAME} CMAKE_INSTALL_INCLUDEDIR: ${CMAKE_INSTALL_INCLUDEDIR}")
-message(STATUS "${PROJECT_NAME} CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
+
+include(GNUInstallDirs)
 if (NOT DEFINED CMAKE_MODULE_PATH)
   set(CMAKE_MODULE_PATH "")
 endif()
@@ -50,10 +46,6 @@ endif()
 
 file(GLOB_RECURSE SOURCE_FILE *.cc *.cpp)
 file(GLOB_RECURSE HEAD_FILE *.h)
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin CACHE PATH "Single Directory for all Executables.")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib CACHE PATH "Single Directory for all shared Libraries")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib CACHE PATH "Single Directory for all static archive")
 
 # 生成链接库 SHARED or  STATIC
 # add_library (mathkarl  SHARED ${DIR_LIB_SRCS})
