@@ -3,4 +3,4 @@
 	url = git@github.com:gengshenchen/framelesshelper.git
 [submodule "3rdparty/qt-material-widgets"]
 	path = 3rdparty/qt-material-widgets
-	url = git@github.com:gengshenchen/qt-material-widgets.git
+	url = git@github.com:karlchen-me/qt-material-widgets.git
