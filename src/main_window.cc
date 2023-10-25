@@ -1,7 +1,9 @@
 #include "main_window.h"
-#include <QLabel.h>
+#include "ui_main_window.h"
 #include <iostream>
-
+//QT
+#include <QLabel>
+#include <QFileIconProvider>
 //framelesshelper head
 #include <FramelessHelper/Core/framelessmanager.h>
 #include <FramelessHelper/Core/utils.h>
@@ -9,14 +11,12 @@
 #include <FramelessHelper/Widgets/standardsystembutton.h>
 #include <FramelessHelper/Widgets/standardtitlebar.h>
 
-#include <QFileIconProvider>
 #include "main_window_config.h"
 #include "qtmaterialappbar.h"
 #include "qtmaterialavatar.h"
 #include "qtmaterialdrawer.h"
 #include "qtmaterialflatbutton.h"
 #include "qtmaterialiconbutton.h"
-#include "ui_main_window.h"
 
 FRAMELESSHELPER_USE_NAMESPACE
 using namespace Global;
@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent, const Qt::WindowFlags flags)
     , m_drawer(new QtMaterialDrawer) {
     ui->setupUi(this);
 
-    //MainWindow ÓÐ×Ô¼ºµÄ²¼¾Ö£¬Òª×Ô¶¨Òå²¼¾ÖÐèÓÃwidgetÀà
+    //MainWindow ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Ä²ï¿½ï¿½Ö£ï¿½Òªï¿½Ô¶ï¿½ï¿½å²¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½widgetï¿½ï¿½
     m_canvas            = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -91,9 +91,9 @@ void MainWindow::initialize() {
               background: #888888;
           }
               )"));
-    // ´ËÊ±µÄtitleBarLayoutÒÑ¾­ÓÐ¿Ø¼þÔÚ²¼¾ÖÀï¡£ËùÒÔaddSpacing»áÔÚ×îºóÃæÌí¼Ó£¬ÒªÊ¹ÓÃinsertSpacing¡£Í¼±êºÍÎÄ±¾TitleLabel ²»ÊôÓÚ²¼¾Ö¡£
-    // Ô´Âë£º titleBarLayout->addStretch(); //Ò²ÊÇ²¼¾ÖÀïµÄ£¬indexÒ²ÒªËã
-    //       titleBarLayout->addLayout(systemButtonsOuterLayout);//·Å´óËõÐ¡¹Ø±Õ Ò»¸ö²¼¾Ö
+    // ï¿½ï¿½Ê±ï¿½ï¿½titleBarLayoutï¿½Ñ¾ï¿½ï¿½Ð¿Ø¼ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¡£ï¿½ï¿½ï¿½ï¿½addSpacingï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ÒªÊ¹ï¿½ï¿½insertSpacingï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ä±ï¿½TitleLabel ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½Ö¡ï¿½
+    // Ô´ï¿½ë£º titleBarLayout->addStretch(); //Ò²ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½indexÒ²Òªï¿½ï¿½
+    //       titleBarLayout->addLayout(systemButtonsOuterLayout);//ï¿½Å´ï¿½ï¿½ï¿½Ð¡ï¿½Ø±ï¿½ Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     m_titleBar->setWindowIconSize(QSize(16, 16));
     QSize iconSize = m_titleBar->windowIconSize();
     titleBarLayout->insertSpacing(0, iconSize.width() + 16);
