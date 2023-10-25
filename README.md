@@ -1,8 +1,8 @@
-# FramelessHelper 2.x
+#  karl-app 
 
-[![CI: Build Test](https://github.com/wangwenx190/framelesshelper/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/wangwenx190/framelesshelper/actions/workflows/ci.yml)
+<!-- [![CI: Build Test](https://github.com/wangwenx190/framelesshelper/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/wangwenx190/framelesshelper/actions/workflows/ci.yml) -->
 
-Cross-platform window customization framework for Qt Widgets and Qt Quick. Supports Windows, Linux and macOS.
+- framelesshelp in ubuntu 22, need to release,crashing with debug, so do release for ubuntu.
 
 ## Join with Us :triangular_flag_on_post:
 
@@ -10,12 +10,7 @@ You can join our [Discord channel](https://discord.gg/grrM4Tmesy) to communicate
 
 ## TODO
 
-- Common: Add cross-platform customizable system menu for both Qt Widgets and Qt Quick. Also supports both light and dark theme.
-- Examples: Add QtWebEngine based demo projects for both Qt Widgets and Qt Quick. The whole user interface will be written in HTML instead of C++/QML.
-- Examples: Add demo projects that emulate the classic appearance of UWP applications. They will have a backward button on the left side of the title bar and a search box in the middle of the title bar. And maybe a side bar on the left side to switch between different pages.
-- Examples: Add demo projects that have transparent background and doesn't have rectangular window frame.
-- Examples: Add demo projects based on QRhiWidget and QRhiQuickItem.
-- Feature requests are welcome!
+
 
 ## Screenshots
 
