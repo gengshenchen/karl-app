@@ -96,14 +96,15 @@ file(GLOB_RECURSE SOURCE_FILE src/*.cc src/*.cpp)
 file(GLOB_RECURSE UI_FILE src/*.ui)
 file(GLOB_RECURSE HEAD_FILE src/*.h)
 
-#动态 mathkarl
-add_subdirectory (dependency/mathdll)
+#动态 mathkarl EXCLUDE_FROM_ALL cpack时不将子项目install的内容打包一份
+#因为已经设置CMAKE_RUNTIME_OUTPUT_DIRECTORY 等目录，子项目的目标会生成在主项目设置的目录里
+add_subdirectory (dependency/mathdll EXCLUDE_FROM_ALL)
 set (EXTRA_LIBS ${EXTRA_LIBS} mathkarl)
 
 # framelesshelper
 # ubuntu need to download gtksudo apt install libgtk-3-0 libgtk-3-dev 
 # important! Must use Release and  dynamic link in ubuntu. static and debug will core dump in my vm.
-add_subdirectory(3rdparty/framelesshelper)
+add_subdirectory(3rdparty/framelesshelper EXCLUDE_FROM_ALL )
 set (EXTRA_LIBS ${EXTRA_LIBS} FramelessHelper::Core FramelessHelper::Widgets)
 
 #static link materialui
@@ -194,16 +195,16 @@ endif()
 # 构建一个 CPack 安装包(cmake install的内容打成安装包,release版本),切换到out目录，命令行：cpack 
 if (K_WINDOWS )
   if(CMAKE_BUILD_TYPE STREQUAL "Release")
-  set(CPACK_GENERATOR NSIS)
-  set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_BINARY_DIR}/installer/)
-  set(CPACK_PACKAGE_NAME "${PROJECT_NAME}-installer")
-  set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
-  set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
-  set(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
-  set(CPACK_PACKAGE_VENDOR  "My company")
-  #set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
-  set(CPACK_PACKAGE_INSTALL_DIRECTORY ${PROJECT_NAME})
-  message(STATUS "CPack generators: ${CPACK_GENERATOR}")
-  INCLUDE(CPack)
+    set(CPACK_GENERATOR NSIS)
+    set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_BINARY_DIR}/installer/)
+    set(CPACK_PACKAGE_NAME "${PROJECT_NAME}-installer")
+    set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
+    set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
+    set(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
+    set(CPACK_PACKAGE_VENDOR  "My company")
+    #set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
+    set(CPACK_PACKAGE_INSTALL_DIRECTORY ${PROJECT_NAME})
+    message(STATUS "CPack generators: ${CPACK_GENERATOR}")
+    INCLUDE(CPack)
   endif()
 endif(K_WINDOWS)
