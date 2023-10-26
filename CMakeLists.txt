@@ -98,13 +98,22 @@ file(GLOB_RECURSE HEAD_FILE src/*.h)
 
 #动态 mathkarl EXCLUDE_FROM_ALL cpack时不将子项目install的内容打包一份
 #因为已经设置CMAKE_RUNTIME_OUTPUT_DIRECTORY 等目录，子项目的目标会生成在主项目设置的目录里
-add_subdirectory (dependency/mathdll EXCLUDE_FROM_ALL)
+if(K_WINDOWS)
+  add_subdirectory (dependency/mathdll EXCLUDE_FROM_ALL)
+else()
+  add_subdirectory (dependency/mathdll)
+endif(K_WINDOWS)
 set (EXTRA_LIBS ${EXTRA_LIBS} mathkarl)
 
 # framelesshelper
 # ubuntu need to download gtksudo apt install libgtk-3-0 libgtk-3-dev 
 # important! Must use Release and  dynamic link in ubuntu. static and debug will core dump in my vm.
-add_subdirectory(3rdparty/framelesshelper EXCLUDE_FROM_ALL )
+if(K_WINDOWS)
+  add_subdirectory (3rdparty/framelesshelper EXCLUDE_FROM_ALL)
+else()
+  add_subdirectory (3rdparty/framelesshelper) 
+  #linux need cmake install. if exclude ,not have submodule install
+endif(K_WINDOWS)
 set (EXTRA_LIBS ${EXTRA_LIBS} FramelessHelper::Core FramelessHelper::Widgets)
 
 #static link materialui
@@ -182,12 +191,19 @@ if (K_WINDOWS)
     include (InstallRequiredSystemLibraries) 
 
 elseif(K_LINUX) # linuxdeployqt need to hand-make
-    set(INSTALL_TARGETS ${INSTALL_TARGETS}  ${PROJECT_NAME})
-    install(TARGETS ${INSTALL_TARGETS} EXPORT Karl-app
+    set(INSTALL_TARGETS ${INSTALL_TARGETS} ${PROJECT_NAME})
+    install(TARGETS ${INSTALL_TARGETS} EXPORT Karl-export
     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
     RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
     INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+)
+# #### Define the folder you want to delete submodule include 
+set(folder_to_delete "${CMAKE_INSTALL_PREFIX}/include/")
+# Add a custom command to remove the folder after installation
+install(
+    CODE "message(STATUS \"Removing folder: ${folder_to_delete}\")"
+    CODE "file(REMOVE_RECURSE \"${folder_to_delete}\")"
 )
 endif()
 
