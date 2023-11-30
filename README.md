@@ -15,15 +15,10 @@
 
 ### Linux
 
-![Light](./doc/linux_light.png)
 
-![Dark](./doc/linux_dark.png)
 
 ### macOS
 
-![Light](./doc/mac_light.png)
-
-![Dark](./doc/mac_dark.png)
 
 
 ## windows
@@ -49,6 +44,15 @@
     cmake --build out --config Release
     cmake --install out --config Release
 ```
+## Work in progress
+
+- [ ] boost test / google test
+- [ ] Valgrind / Sanitizers(LLVM, google) (unix-like)
+- [ ] VLD (windows) 
+- [ ] boost
+
+
+
 
 ## Desigin Doc
 - Microsoft: <https://docs.microsoft.com/en-us/windows/apps/design/basics/titlebar-design>
@@ -57,7 +61,5 @@
 - Apple: <https://developer.apple.com/design/human-interface-guidelines/macos/windows-and-views/window-anatomy/>
 
 ## Platform Notes
-
-### Windows
 
 ## License
