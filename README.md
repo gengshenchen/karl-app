@@ -39,10 +39,20 @@
 ```
 ## linux
 ```
-    //in dir karl-app, release: 
+    //in dir "karl-app", release: 
     cmake -S . -B out -DCMAKE_BUILD_TYPE=Release
     cmake --build out --config Release
     cmake --install out --config Release
+
+    //if want to make a pack, change in "out" dir
+    //first ubuntu: sudo apt-get install rpm 
+    cpack 
+    // source pack:
+    cpack -G TGZ --config CPackSourceConfig.cmake
+    
+    // ubuntu install deb pack
+    sudo dpkg -i karl-app-1.1.0-Linux.deb 
+
 ```
 ## Work in progress
 
