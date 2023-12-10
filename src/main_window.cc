@@ -1,9 +1,9 @@
 #include "main_window.h"
-#include "ui_main_window.h"
 #include <iostream>
+#include "ui_main_window.h"
 //QT
-#include <QLabel>
 #include <QFileIconProvider>
+#include <QLabel>
 //framelesshelper head
 #include <FramelessHelper/Core/framelessmanager.h>
 #include <FramelessHelper/Core/utils.h>
@@ -91,8 +91,8 @@ void MainWindow::initialize() {
               background: #888888;
           }
               )"));
-    // ��ʱ��titleBarLayout�Ѿ��пؼ��ڲ��������addSpacing������������ӣ�Ҫʹ��insertSpacing��ͼ����ı�TitleLabel �����ڲ��֡�
-    // Դ�룺 titleBarLayout->addStretch(); //Ҳ�ǲ�����ģ�indexҲҪ��
+    // ��ʱ��titleBarLayout�Ѿ��пؼ��ڲ��������addSpacing������������ӣ�Ҫʹ��insertSpacing��ͼ����ı�TitleLabel
+    // �����ڲ��֡� Դ�룺 titleBarLayout->addStretch(); //Ҳ�ǲ�����ģ�indexҲҪ��
     //       titleBarLayout->addLayout(systemButtonsOuterLayout);//�Ŵ���С�ر� һ������
     m_titleBar->setWindowIconSize(QSize(16, 16));
     QSize iconSize = m_titleBar->windowIconSize();
@@ -117,7 +117,7 @@ void MainWindow::initialize() {
 void MainWindow::initAppBar() {
     QLabel *label = new QLabel("APP");
     label->setAttribute(Qt::WA_TranslucentBackground);
-    label->setForegroundRole(QPalette::Foreground);
+    label->setForegroundRole(QPalette::WindowText);
     label->setContentsMargins(6, 0, 0, 0);
 
     QPalette palette = label->palette();

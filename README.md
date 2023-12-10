@@ -1,7 +1,7 @@
 #  karl-app 
 
 <!-- [![CI: Build Test](https://github.com/wangwenx190/framelesshelper/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/wangwenx190/framelesshelper/actions/workflows/ci.yml) -->
-
+- This is a GUI APP Demo base Qt framework. And integration framelesshelper , material ui style, use  cmake etc. 
 - framelesshelp in ubuntu 22, need to release,crashing with debug, so do release for ubuntu.
 
 
@@ -20,14 +20,22 @@
 ### macOS
 
 
-
-## windows
+## use this
+``` 
+    //clone repository
+    git clone --recurse-submodules -j8 https://github.com/gengshenchen/karl-app.git
+    or 
+    git clone https://github.com/gengshenchen/karl-app.git
+    git submodule update --recursive --init 
+```
+### windows
 
 ```
     //in dir karl-app, release: 
     cmake -S . -B out -DCMAKE_BUILD_TYPE=Release
     cmake --build out --config Release
     cmake --install out --config Release
+    //cpack
     cd out 
     cpack .
 
@@ -35,9 +43,10 @@
     cmake -S . -B out -DCMAKE_BUILD_TYPE=Debug
     cmake --build out --config Debug
     cmake --install out --config Debug
-    // cd out  && cpack .    error for debug
+    //Do not cpack iwith debug build
+    //cd out  && cpack . and error for debug
 ```
-## linux
+### linux
 ```
     //in dir "karl-app", release: 
     cmake -S . -B out -DCMAKE_BUILD_TYPE=Release
@@ -54,6 +63,15 @@
     sudo dpkg -i karl-app-1.1.0-Linux.deb 
 
 ```
+### macos
+```
+    //cannot use Xcode genertor if DFRAMELESSHELPER_BUILD_STATIC=ON, but when OFF It make some error in mac.
+    cmake -S . -B out  -DK_MACOS_UNIVERSAL=ON -DQTDIR=/Users/karl/Qt/6.6.1/macos   -DFRAMELESSHELPER_NO_SUMMARY=OFF  -DFRAMELESSHELPER_BUILD_STATIC=ON
+    cmake --build out --config Release
+    //go into the contains "karl-app.app" directory
+    macdeployqt karl-app.app -dmg
+    
+```
 ## Work in progress
 
 - [ ] boost test / google test
@@ -62,14 +80,10 @@
 - [ ] boost
 
 
-
-
 ## Desigin Doc
 - Microsoft: <https://docs.microsoft.com/en-us/windows/apps/design/basics/titlebar-design>
 - KDE: <https://develop.kde.org/hig/>
 - GNOME: <https://developer.gnome.org/hig/patterns/containers/header-bars.html>
 - Apple: <https://developer.apple.com/design/human-interface-guidelines/macos/windows-and-views/window-anatomy/>
-
-## Platform Notes
 
 ## License

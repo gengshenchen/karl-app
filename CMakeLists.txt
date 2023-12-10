@@ -42,6 +42,7 @@ message(STATUS "${PROJECT_NAME} CMAKE_INSTALL_BINDIR: ${CMAKE_INSTALL_BINDIR}")
 message(STATUS "${PROJECT_NAME} CMAKE_INSTALL_INCLUDEDIR: ${CMAKE_INSTALL_INCLUDEDIR}")
 message(STATUS "${PROJECT_NAME} CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
 
+#set linux install rpath
 if(K_LINUX)
   # need to set before add_exec... add_lib...
   set(CMAKE_INSTALL_PREFIX "/opt/${PROJECT_NAME}")
@@ -64,8 +65,21 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-find_package(QT NAMES Qt5 Qt6 REQUIRED COMPONENTS Core)
+
+set(QTDIR "" CACHE STRING "use custom Qt root dir, eg:/Users/karl/Downloads/qt-everywhere-src-5.15.5/out/")
+if(QTDIR STREQUAL "")
+    message(STATUS "Variable 'QTDIR' is not defined.")
+else()
+    message(STATUS "Variable 'QTDIR' is defined. Value: ${QTDIR}")
+    set(CMAKE_PREFIX_PATH ${QTDIR} )
+endif()
+find_package(QT NAMES  Qt6  Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Widgets)
+message(STATUS "Qt version : ${QT_VERSION_MAJOR} - ${QT_VERSION_MINOR}- ${QT_VERSION_PATCH}")
+option(K_MACOS_UNIVERSAL  "make sure Qt version is universal or not" ON)
+if(K_MACOS AND K_MACOS_UNIVERSAL)
+    set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "" FORCE) #;x86_64
+endif()
 
 # It is best to add specific files
 file(GLOB_RECURSE SOURCE_FILE src/*.cc src/*.cpp)
@@ -85,12 +99,17 @@ set(EXTRA_LIBS ${EXTRA_LIBS} mathkarl)
 
 # framelesshelper
 # ubuntu need to download gtksudo apt install libgtk-3-0 libgtk-3-dev
-# important! Must use Release and  dynamic link in ubuntu. static and debug will core dump in my vm.
+# important! Must use Release and  dynamic link when build framelesshelper in ubuntu.
+# static and debug will core dump in my vm.
+# macOS 14 and arm64e ，need set FRAMELESSHELPER_BUILD_STATIC=ON if you are using unix makefile
 if(K_WINDOWS)
   add_subdirectory(3rdparty/framelesshelper EXCLUDE_FROM_ALL)
+elseif(K_MACOS)
+  #set(FRAMELESSHELPER_BUILD_STATIC ON)
+  add_subdirectory(3rdparty/framelesshelper)
 else()
   add_subdirectory(3rdparty/framelesshelper)
-endif(K_WINDOWS)
+endif()
 
 set(EXTRA_LIBS ${EXTRA_LIBS} FramelessHelper::Core FramelessHelper::Widgets)
 
@@ -99,7 +118,11 @@ add_subdirectory(3rdparty/qt-material-widgets)
 set(EXTRA_LIBS ${EXTRA_LIBS} materialui)
 
 # add app qrc
+if(QT_VERSION_MAJOR GREATER 5)
+qt_add_resources(QRC_FILES resources/${PROJECT_NAME}.qrc)
+else()
 qt5_add_resources(QRC_FILES resources/${PROJECT_NAME}.qrc)
+endif()
 
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE
   ${HEAD_FILE} ${UI_FILE} ${SOURCE_FILE} ${QRC_FILES})
@@ -158,9 +181,9 @@ message(STATUS "EXTRA_LIBS : ${EXTRA_LIBS}")
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
   ${EXTRA_LIBS}
-  Qt5::Core
-  Qt5::Gui
-  Qt5::Widgets
+  Qt${QT_VERSION_MAJOR}::Core
+  Qt${QT_VERSION_MAJOR}::Gui
+  Qt${QT_VERSION_MAJOR}::Widgets
   # $<$<BOOL:${use_dll}>:my_dll>
 )
 
@@ -194,6 +217,17 @@ elseif(K_LINUX) # linuxdeployqt need to hand-make
     CODE "message(STATUS \"Removing folder: ${folder_to_delete}\")"
     CODE "file(REMOVE_RECURSE \"${folder_to_delete}\")"
   )
+elseif(K_MACOS)
+#message(STATUS "macos not use cmake --install")
+#include(cmake/tools.cmake)
+#find_deploy_qt_tool(qt_deploy_tool)
+#message("qt_deploy_tool ${qt_deploy_tool}")
+#add_custom_command(
+#    TARGET ${PROJECT_NAME} POST_BUILD
+#    COMMAND ${CMAKE_COMMAND} -E echo "Build process finished. Running shell command..."
+#    COMMAND ${qt_deploy_tool} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}.app -dmg
+#    COMMENT "Running shell command after build"
+#)
 endif()
 
 
@@ -203,5 +237,4 @@ if(K_WINDOWS)
 elseif(K_LINUX)
   include(cmake/cpacklinux.cmake)
 elseif(K_MACOS)
-  include(cmake/cpackmac.cmake)
 endif()
