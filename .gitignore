@@ -58,6 +58,7 @@ compile_commands.json
 [Ll]ib/
 [Ll]ib64/
 [Bb]uild*/
+[Ii]nstaller*/
 *.7z
 *.zip
 *.rar

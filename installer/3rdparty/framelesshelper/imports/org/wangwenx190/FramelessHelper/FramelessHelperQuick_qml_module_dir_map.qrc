@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/">
-    <file alias="/org/wangwenx190/FramelessHelper">/Users/karl/work/karl-app/installer/3rdparty/framelesshelper/imports/org/wangwenx190/FramelessHelper</file>
-
-  </qresource>
-</RCC>

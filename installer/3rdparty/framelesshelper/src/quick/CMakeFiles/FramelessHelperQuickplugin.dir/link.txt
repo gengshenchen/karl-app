@@ -1,2 +1,0 @@
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc ../../imports/org/wangwenx190/FramelessHelper/libFramelessHelperQuickplugin.a CMakeFiles/FramelessHelperQuickplugin.dir/FramelessHelperQuickplugin_autogen/mocs_compilation.cpp.o CMakeFiles/FramelessHelperQuickplugin.dir/FramelessHelperQuickplugin_org_wangwenx190_FramelessHelperPlugin.cpp.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib ../../imports/org/wangwenx190/FramelessHelper/libFramelessHelperQuickplugin.a
