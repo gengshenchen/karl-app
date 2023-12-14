@@ -1,0 +1,30 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "__FRAMELESSHELPER__",
+                    "value": "0x02050000"
+                }
+            ],
+            "className": "FramelessQuickHelperPrivate",
+            "methods": [
+                {
+                    "access": "public",
+                    "name": "doRepaintAllChildren",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "wangwenx190::FramelessHelper::FramelessQuickHelperPrivate",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "framelessquickhelper_p.h",
+    "outputRevision": 68
+}

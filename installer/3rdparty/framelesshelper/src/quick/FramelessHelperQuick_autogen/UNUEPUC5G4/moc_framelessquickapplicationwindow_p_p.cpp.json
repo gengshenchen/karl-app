@@ -1,0 +1,23 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "__FRAMELESSHELPER__",
+                    "value": "0x02050000"
+                }
+            ],
+            "className": "FramelessQuickApplicationWindowPrivate",
+            "object": true,
+            "qualifiedClassName": "wangwenx190::FramelessHelper::FramelessQuickApplicationWindowPrivate",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "framelessquickapplicationwindow_p_p.h",
+    "outputRevision": 68
+}

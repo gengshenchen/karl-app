@@ -1,0 +1,20 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/karl/work/karl-app/installer/3rdparty/framelesshelper/src/core/.rcc/qrc_framelesshelpercore.cpp" "3rdparty/framelesshelper/src/core/CMakeFiles/FramelessHelperCore_resources_1.dir/.rcc/qrc_framelesshelpercore.cpp.o" "gcc" "3rdparty/framelesshelper/src/core/CMakeFiles/FramelessHelperCore_resources_1.dir/.rcc/qrc_framelesshelpercore.cpp.o.d"
+  "/Users/karl/work/karl-app/installer/3rdparty/framelesshelper/src/core/FramelessHelperCore_resources_1_autogen/mocs_compilation.cpp" "3rdparty/framelesshelper/src/core/CMakeFiles/FramelessHelperCore_resources_1.dir/FramelessHelperCore_resources_1_autogen/mocs_compilation.cpp.o" "gcc" "3rdparty/framelesshelper/src/core/CMakeFiles/FramelessHelperCore_resources_1.dir/FramelessHelperCore_resources_1_autogen/mocs_compilation.cpp.o.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

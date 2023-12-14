@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "../../../../lib/libFramelessHelperQuick64.a"
+  "../../../../lib/libFramelessHelperQuick64.pdb"
+  "../../imports/org/wangwenx190/FramelessHelper/plugins.qmltypes"
+  "CMakeFiles/FramelessHelperQuick_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/FramelessHelperQuick_autogen.dir/ParseCache.txt"
+  "FramelessHelperQuick_autogen"
+  "CMakeFiles/FramelessHelperQuick.dir/FramelessHelperQuick_autogen/mocs_compilation.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/FramelessHelperQuick_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/framelesshelperquick_global.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/framelesshelperquick_global.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/framelesshelperquick_qmltyperegistrations.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/framelesshelperquick_qmltyperegistrations.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/framelessquickapplicationwindow.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/framelessquickapplicationwindow.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/framelessquickhelper.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/framelessquickhelper.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/framelessquickutils.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/framelessquickutils.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/framelessquickwindow.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/framelessquickwindow.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/quickchromepalette.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/quickchromepalette.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/quickimageitem.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/quickimageitem.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/quickmicamaterial.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/quickmicamaterial.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/quickstandardsystembutton.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/quickstandardsystembutton.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/quickstandardtitlebar.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/quickstandardtitlebar.cpp.o.d"
+  "CMakeFiles/FramelessHelperQuick.dir/quickwindowborder.cpp.o"
+  "CMakeFiles/FramelessHelperQuick.dir/quickwindowborder.cpp.o.d"
+  "framelesshelperquick_qmltyperegistrations.cpp"
+  "meta_types/qt6framelesshelperquick_release_metatypes.json"
+  "meta_types/qt6framelesshelperquick_release_metatypes.json.gen"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/FramelessHelperQuick.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

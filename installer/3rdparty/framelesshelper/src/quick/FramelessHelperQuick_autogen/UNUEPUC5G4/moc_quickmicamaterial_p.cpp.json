@@ -1,0 +1,30 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "__FRAMELESSHELPER__",
+                    "value": "0x02050000"
+                }
+            ],
+            "className": "QuickMicaMaterialPrivate",
+            "object": true,
+            "qualifiedClassName": "wangwenx190::FramelessHelper::QuickMicaMaterialPrivate",
+            "slots": [
+                {
+                    "access": "public",
+                    "name": "rebindWindow",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "quickmicamaterial_p.h",
+    "outputRevision": 68
+}

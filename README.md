@@ -65,11 +65,18 @@
 ```
 ### macos
 ```
-    //cannot use Xcode genertor if DFRAMELESSHELPER_BUILD_STATIC=ON, but when OFF It make some error in mac.
+    // generator Unix Makefiles
     cmake -S . -B out  -DK_MACOS_UNIVERSAL=ON -DQTDIR=/Users/karl/Qt/6.6.1/macos   -DFRAMELESSHELPER_NO_SUMMARY=OFF  -DFRAMELESSHELPER_BUILD_STATIC=ON
     cmake --build out --config Release
     //go into the contains "karl-app.app" directory
     macdeployqt karl-app.app -dmg
+
+    //If use Xcode gentetor  make sure FRAMELESSHELPER_BUILD_QUICK=OFF
+    cmake -S . -B out  -DK_MACOS_UNIVERSAL=ON -DQTDIR=/Users/karl/Qt/6.6.1/macos   -DFRAMELESSHELPER_NO_SUMMARY=OFF -DFRAMELESSHELPER_ENABLE_UNIVERSAL_BUILD=ON  -DFRAMELESSHELPER_BUILD_STATIC=ON -DFRAMELESSHELPER_BUILD_QUICK=OFF  -GXcode
+    
+    //pack to dmg file
+    //cd root “karl-app” directory ，run build.py, output to installer/bin/ folder
+    python3 scripts/build/build.py 
     
 ```
 ## Work in progress

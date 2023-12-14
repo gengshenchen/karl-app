@@ -5,7 +5,7 @@ include(cmake/policy.cmake)
 project(karl-app LANGUAGES C CXX)
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 1)
-set(VERSION_PATCH 0)
+set(VERSION_PATCH 1)
 
 # set it after project
 include(cmake/system.cmake)
@@ -30,12 +30,13 @@ if(NOT DEFINED CMAKE_INSTALL_INCLUDEDIR)
   set(CMAKE_INSTALL_INCLUDEDIR "include")
 endif()
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin
-  CACHE PATH "Single Directory for all Executables.") # in windows , it is also for dll.
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib
-  CACHE PATH "Single Directory for all shared Libraries")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib
-  CACHE PATH "Single Directory for all static archive")
+# if(NOT DEFINED CMAKE_BUILD_TYPE)
+#   set(CMAKE_BUILD_TYPE "Release")
+# endif()
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin CACHE PATH "Single Directory for all Executables.") # in windows , it is also for dll.
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib CACHE PATH "Single Directory for all shared Libraries")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib CACHE PATH "Single Directory for all static archive")
 
 message(STATUS "${PROJECT_NAME} CMAKE_INSTALL_LIBDIR: ${CMAKE_INSTALL_LIBDIR}")
 message(STATUS "${PROJECT_NAME} CMAKE_INSTALL_BINDIR: ${CMAKE_INSTALL_BINDIR}")
@@ -81,6 +82,21 @@ if(K_MACOS AND K_MACOS_UNIVERSAL)
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "" FORCE) #;x86_64
 endif()
 
+if(K_MACOS)
+  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.13" CACHE STRING "Minimum OS X deployment version")
+  #info.list
+  set(MACOSX_BUNDLE_BUNDLE_NAME "karl-app")
+  set(MACOSX_BUNDLE_BUNDLE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+  set(MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+  set(MACOSX_BUNDLE_BUNDLE_IDENTIFIER "com.example.karl-app")
+  set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.example.karl-app")
+  set(MACOSX_BUNDLE_ICON_FILE app.icns)
+
+  set(AppIcon ${CMAKE_CURRENT_SOURCE_DIR}/resources/icon/app.icns)
+  set_source_files_properties(${AppIcon} PROPERTIES
+       MACOSX_PACKAGE_LOCATION "Resources")
+endif()
+
 # It is best to add specific files
 file(GLOB_RECURSE SOURCE_FILE src/*.cc src/*.cpp)
 file(GLOB_RECURSE UI_FILE src/*.ui)
@@ -124,8 +140,9 @@ else()
 qt5_add_resources(QRC_FILES resources/${PROJECT_NAME}.qrc)
 endif()
 
+message(STATUS "QRC_FILES: ${QRC_FILES}")
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE
-  ${HEAD_FILE} ${UI_FILE} ${SOURCE_FILE} ${QRC_FILES})
+  ${HEAD_FILE} ${UI_FILE} ${SOURCE_FILE} ${QRC_FILES} ${AppIcon} )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
   ${PROJECT_SOURCE_DIR}/3rdparty/qt-material-widgets/components

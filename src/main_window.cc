@@ -91,9 +91,7 @@ void MainWindow::initialize() {
               background: #888888;
           }
               )"));
-    // ��ʱ��titleBarLayout�Ѿ��пؼ��ڲ��������addSpacing������������ӣ�Ҫʹ��insertSpacing��ͼ����ı�TitleLabel
-    // �����ڲ��֡� Դ�룺 titleBarLayout->addStretch(); //Ҳ�ǲ�����ģ�indexҲҪ��
-    //       titleBarLayout->addLayout(systemButtonsOuterLayout);//�Ŵ���С�ر� һ������
+
     m_titleBar->setWindowIconSize(QSize(16, 16));
     QSize iconSize = m_titleBar->windowIconSize();
     titleBarLayout->insertSpacing(0, iconSize.width() + 16);
