@@ -57,6 +57,7 @@ compile_commands.json
 [Bb]in64/
 [Ll]ib/
 [Ll]ib64/
+# [Bb]uild*/
 [Ii]nstaller*/
 *.7z
 *.zip
@@ -73,8 +74,8 @@ compile_commands.json
 build.user.bat
 build.user.sh
 user.conf
-[Dd]oc/
-[Dd]ocs/
+# [Dd]oc/
+# [Dd]ocs/
 Thumbs.db
 *.rc
 *.bin
