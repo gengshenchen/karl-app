@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=karl-app
+GenericName=karl-app
+Comment=This is my comment
+Exec=/opt/karl-app/bin/karl-app
+Icon=/usr/share/icons/hicolor/512x512/apps/karl-app.jpg
+Terminal=false
+Type=Application
+Categories=Utility;Application;

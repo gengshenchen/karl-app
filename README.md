@@ -48,16 +48,18 @@
 ```
 ### linux
 ```
-    //in dir "karl-app", release: 
-    cmake -S . -B out -DCMAKE_BUILD_TYPE=Release
-    cmake --build out --config Release
-    cmake --install out --config Release
+    //change in dir "karl-app",release,  
+    // you can set qtdir -DQTDIR=/opt/Qt5.14.2/5.14.2/gcc_64/
+    sudo cmake -S . -B out -DCMAKE_BUILD_TYPE=Release
+    sudo cmake --build out --config Release
+    //install to /opt/<app-name>/
+    sudo cmake --install out --config Release
 
     //if want to make a pack, change in "out" dir
     //first ubuntu: sudo apt-get install rpm 
-    cpack 
+    sudo cpack 
     // source pack:
-    cpack -G TGZ --config CPackSourceConfig.cmake
+    sudo cpack -G TGZ --config CPackSourceConfig.cmake
     
     // ubuntu install deb pack
     sudo dpkg -i karl-app-1.1.0-Linux.deb 

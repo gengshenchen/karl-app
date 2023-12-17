@@ -76,7 +76,7 @@ else()
 endif()
 find_package(QT NAMES  Qt6  Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Widgets)
-message(STATUS "Qt version : ${QT_VERSION_MAJOR} - ${QT_VERSION_MINOR}- ${QT_VERSION_PATCH}")
+message(STATUS "Qt version : ${QT_VERSION_MAJOR} - ${QT_VERSION_MINOR} - ${QT_VERSION_PATCH}")
 option(K_MACOS_UNIVERSAL  "make sure Qt version is universal or not" ON)
 if(K_MACOS AND K_MACOS_UNIVERSAL)
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "" FORCE) #;x86_64
@@ -226,14 +226,31 @@ elseif(K_LINUX) # linuxdeployqt need to hand-make
     INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}" COMPONENT dev
   )
 
-  # #### Define the folder you want to delete submodule include
-  set(folder_to_delete "${CMAKE_INSTALL_PREFIX}/include/")
+  
+  # # shell copy dependence  !!!!The copy is incomplete and requires other Qt files.!!!! eg: platforms diractory to /opt/karl-app/bin
+  # install(CODE "execute_process(COMMAND /bin/bash -c \"${CMAKE_CURRENT_SOURCE_DIR}/scripts/build/copy-dependence.sh \\
+  # '${PROJECT_BINARY_DIR}/bin/${PROJECT_NAME}' \\
+  # '${PROJECT_BINARY_DIR}/lib/dependence/'
+  # \")")
+  
+  # # copy library to ${CMAKE_INSTALL_LIBDIR}
+  # install(DIRECTORY ${PROJECT_BINARY_DIR}/lib/dependence/
+  #       DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  #       FILES_MATCHING
+  #       PATTERN "*" )
 
+
+  # Define the folder you want to delete submodule include
+  set(folder_to_delete "${CMAKE_INSTALL_PREFIX}/include/")
   # Add a custom command to remove the folder after installation
   install(
     CODE "message(STATUS \"Removing folder: ${folder_to_delete}\")"
     CODE "file(REMOVE_RECURSE \"${folder_to_delete}\")"
   )
+  # create desktop icon
+  install(FILES  "${CMAKE_CURRENT_SOURCE_DIR}/resources/pictures/karl-app.jpg" DESTINATION "/usr/share/icons/hicolor/512x512/apps/")
+  install(FILES  "${CMAKE_CURRENT_SOURCE_DIR}/scripts/deploy/karl-app.desktop" DESTINATION "/usr/share/applications/")
+
 elseif(K_MACOS)
 #message(STATUS "macos not use cmake --install")
 #include(cmake/tools.cmake)
@@ -253,5 +270,4 @@ if(K_WINDOWS)
   include(cmake/cpackwin.cmake)
 elseif(K_LINUX)
   include(cmake/cpacklinux.cmake)
-elseif(K_MACOS)
 endif()
