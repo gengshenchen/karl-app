@@ -40,6 +40,7 @@
     cpack .
 
      //in dir karl-app, debug: 
+     //you can set Qtdir forexample -DQTDIR=C:\Qt\Qt5.14.2\5.14.2 Or CMAKE_PREFIX_PATH=C:\Qt\Qt5.14.2\5.14.2 that contains Src directory, so that in Visual studio IDE can debug into Qt source code more convenient.
     cmake -S . -B out -DCMAKE_BUILD_TYPE=Debug
     cmake --build out --config Debug
     cmake --install out --config Debug
