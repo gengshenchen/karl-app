@@ -9,9 +9,8 @@
 
 ### Windows
 
-![Light](./doc/win_light.png)
+![Light](./doc/window-app.jpg)
 
-![Dark](./doc/win_dark.png)
 
 ### Linux
 

@@ -2,10 +2,14 @@
 #include <iostream>
 #include "main_window.h"
 #include "mathdll.h"
+#include <memory>
+#include <QDebug>
 
 FRAMELESSHELPER_USE_NAMESPACE
 
 int main(int argc, char *argv[]) {
+
+
     FramelessHelper::Widgets::initialize();
     //test dll function
     power_(10, 2);

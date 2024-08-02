@@ -44,7 +44,7 @@ message(STATUS "${PROJECT_NAME} CMAKE_INSTALL_INCLUDEDIR: ${CMAKE_INSTALL_INCLUD
 message(STATUS "${PROJECT_NAME} CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
 
 #set linux install rpath
-if(K_LINUX)
+if(KLINUX)
   # need to set before add_exec... add_lib...
   set(CMAKE_INSTALL_PREFIX "/opt/${PROJECT_NAME}")
   set(path_to_search "/opt/${PROJECT_NAME}/lib")
@@ -57,7 +57,7 @@ if(K_LINUX)
   if("${isSystemDir}" STREQUAL "-1")
     set(CMAKE_INSTALL_RPATH ${path_to_search})
   endif("${isSystemDir}" STREQUAL "-1")
-endif(K_LINUX)
+endif(KLINUX)
 
 # set and find  Qt
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -78,11 +78,11 @@ find_package(QT NAMES  Qt6  Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Widgets)
 message(STATUS "Qt version : ${QT_VERSION_MAJOR} - ${QT_VERSION_MINOR} - ${QT_VERSION_PATCH}")
 option(K_MACOS_UNIVERSAL  "make sure Qt version is universal or not" ON)
-if(K_MACOS AND K_MACOS_UNIVERSAL)
+if(KMACOS AND K_MACOS_UNIVERSAL)
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "" FORCE) #;x86_64
 endif()
 
-if(K_MACOS)
+if(KMACOS)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.13" CACHE STRING "Minimum OS X deployment version")
   #info.list
   set(MACOSX_BUNDLE_BUNDLE_NAME "karl-app")
@@ -105,11 +105,11 @@ file(GLOB_RECURSE HEAD_FILE src/*.h)
 # 动态 mathkarl EXCLUDE_FROM_ALL cpack时不将子项目install的内容打包一份
 # 因为已经设置CMAKE_RUNTIME_OUTPUT_DIRECTORY 等目录，子项目的目标会生成在主项目设置的目录里
 # linux need cmake install. if exclude ,not have submodule install
-if(K_WINDOWS)
+if(KWINDOWS)
   add_subdirectory(dependency/mathdll EXCLUDE_FROM_ALL)
 else()
   add_subdirectory(dependency/mathdll)
-endif(K_WINDOWS)
+endif(KWINDOWS)
 
 set(EXTRA_LIBS ${EXTRA_LIBS} mathkarl)
 
@@ -118,12 +118,12 @@ set(EXTRA_LIBS ${EXTRA_LIBS} mathkarl)
 # important! Must use Release and  dynamic link when build framelesshelper in ubuntu.
 # static and debug will core dump in my vm.
 # macOS 14 and arm64e ，need set FRAMELESSHELPER_BUILD_STATIC=ON if you are using unix makefile
-if(K_WINDOWS)
+if(KWINDOWS)
   add_subdirectory(3rdparty/framelesshelper EXCLUDE_FROM_ALL)
-elseif(K_MACOS)
+elseif(KMACOS)
   #set(FRAMELESSHELPER_BUILD_STATIC ON)
   add_subdirectory(3rdparty/framelesshelper)
-else()
+else() 
   add_subdirectory(3rdparty/framelesshelper)
 endif()
 
@@ -150,7 +150,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   ${PROJECT_SOURCE_DIR}/dependency/mathdll
 )
 
-if(K_WINDOWS)
+if(KWINDOWS)
   include(3rdparty/framelesshelper/cmake/utils.cmake)
   set(__rc_path "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.rc")
 
@@ -206,7 +206,7 @@ target_link_libraries(${PROJECT_NAME}
 
 # cmake --install out  将out目录下安装(copy)到 ${PROJECT_BINARY_DIR}/installed
 # TODO WINDEPLOYQT_DIR
-if(K_WINDOWS)
+if(KWINDOWS)
   set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/installed)
   set(WINDEPLOYQT_DIR "C:/Qt/Qt5.14.2/5.14.2/msvc2017_64/bin")
 
@@ -217,7 +217,7 @@ if(K_WINDOWS)
     DESTINATION ./bin)
   include(InstallRequiredSystemLibraries)
 
-elseif(K_LINUX) # linuxdeployqt need to hand-make
+elseif(KLINUX) # linuxdeployqt need to hand-make
   set(INSTALL_TARGETS ${INSTALL_TARGETS} ${PROJECT_NAME})
   install(TARGETS ${INSTALL_TARGETS} EXPORT Karl-export
     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT lib
@@ -251,7 +251,7 @@ elseif(K_LINUX) # linuxdeployqt need to hand-make
   install(FILES  "${CMAKE_CURRENT_SOURCE_DIR}/resources/pictures/karl-app.jpg" DESTINATION "/usr/share/icons/hicolor/512x512/apps/")
   install(FILES  "${CMAKE_CURRENT_SOURCE_DIR}/scripts/deploy/karl-app.desktop" DESTINATION "/usr/share/applications/")
 
-elseif(K_MACOS)
+elseif(KMACOS)
 #message(STATUS "macos not use cmake --install")
 #include(cmake/tools.cmake)
 #find_deploy_qt_tool(qt_deploy_tool)
@@ -266,8 +266,8 @@ endif()
 
 
 #cpack
-if(K_WINDOWS)
+if(KWINDOWS)
   include(cmake/cpackwin.cmake)
-elseif(K_LINUX)
+elseif(KLINUX)
   include(cmake/cpacklinux.cmake)
 endif()
