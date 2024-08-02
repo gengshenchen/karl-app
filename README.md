@@ -1,8 +1,9 @@
 #  karl-app 
 
 <!-- [![CI: Build Test](https://github.com/wangwenx190/framelesshelper/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/wangwenx190/framelesshelper/actions/workflows/ci.yml) -->
-- This is a GUI APP Demo base Qt framework. And integration framelesshelper , material ui style, use  cmake etc. 
-- framelesshelp in ubuntu 22, need to release,crashing with debug, so do release for ubuntu.
+- This is a GUI APP Demo base Qt framework. And integration framelesshelper , material ui style, use  Cmake. 
+- Note: Framelesshelp in ubuntu 22, need to release,crashing with debug, so do release for ubuntu.
+- Mainly used to practice cross-platform programming.
 
 
 ## Screenshots
@@ -13,7 +14,7 @@
 
 
 ### Linux
-
+![ubuntu](./doc/ubuntu-app.png)
 
 
 ### macOS
