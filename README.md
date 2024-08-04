@@ -18,7 +18,7 @@
 
 
 ### macOS
-
+![mac](./doc/mac-app.png)
 
 ## use this
 ``` 
@@ -84,7 +84,7 @@
 ```
 ## Work in progress
 
-- [ ] boost test / google test
+- [*] boost test / google test
 - [ ] Valgrind / Sanitizers(LLVM, google) (unix-like)
 - [ ] VLD (windows) 
 - [ ] boost

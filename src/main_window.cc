@@ -150,7 +150,7 @@ void MainWindow::initDrawer() {
     for (it = labels.begin(); it != labels.end(); ++it) {
         QLabel *label = new QLabel(*it);
         label->setMinimumHeight(30);
-        label->setFont(QFont("Roboto", 10, QFont::Medium));
+       label->setFont(QFont("Roboto", 10, QFont::Medium));
         drawerLayout->addWidget(label);
     }
 
