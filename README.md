@@ -5,7 +5,7 @@
 - Note: Framelesshelp in ubuntu 22, need to release,crashing with debug, so do release for ubuntu.
 - Mainly used to practice cross-platform programming.
 
-
+[![CMake on multiple platforms](https://github.com/gengshenchen/karl-app/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/gengshenchen/karl-app/actions/workflows/cmake-multi-platform.yml)
 ## Screenshots
 
 ### Windows
